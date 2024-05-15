@@ -4,18 +4,23 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 const canvas = document.querySelector('.webgl');
 const scene = new THREE.Scene();
 
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32); // Sphere geometry for switching
+
+
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshPhysicalMaterial({
     metalness: 0,
-        roughness: 1,
+    color:0x222fff,
+        roughness: 0.5,
         envMapIntensity: 0.9,
         clearcoat: 1,
-        thickness:1.5,
+        thickness:15,
         transparent: true,
-        transmission: .95,
+        transmission: .96,
         opacity: 1,
-        ior:1.2,
-        reflectivity: 0.2,
+        ior:12,
+        reflectivity: 0.35,
 });
 
 const planeTexture = new THREE.TextureLoader().load("./assets/background.png");
@@ -25,7 +30,7 @@ const plane_geo = new THREE.BoxGeometry(2, 2, 0.1);
 const plane = new THREE.Mesh(plane_geo,plane_mat);
 scene.add(plane);
 
-const mesh = new THREE.Mesh(geometry, material);
+const mesh = new THREE.Mesh(boxGeometry, material);
 mesh.castShadow = true; // Enable the object to cast shadows
 scene.add(mesh);
 
@@ -80,3 +85,12 @@ function animate() {
 }
 
 animate();
+
+const button = document.getElementById('toggleShape');
+button.addEventListener('click', function() {
+    if (mesh.geometry.type === 'BoxGeometry') {
+        mesh.geometry = sphereGeometry; // Switch to sphere
+    } else {
+        mesh.geometry = boxGeometry; // Switch back to cube
+    }
+});
