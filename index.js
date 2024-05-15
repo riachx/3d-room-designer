@@ -18,7 +18,7 @@ const material = new THREE.MeshPhysicalMaterial({
         reflectivity: 0.2,
 });
 
-const planeTexture = new THREE.TextureLoader().load("../assets/background.png");
+const planeTexture = new THREE.TextureLoader().load("./assets/background.png");
 const plane_mat = new THREE.MeshBasicMaterial({ map: planeTexture });
 
 const plane_geo = new THREE.BoxGeometry(2, 2, 0.1);
@@ -38,7 +38,7 @@ const rgbeLoader = new RGBELoader();
     // Set the scene background or environment
     //scene.background = texture;
     const loader = new THREE.TextureLoader();
-    loader.load('./background.png', function (texture) {
+    loader.load('./assets/background.png', function (texture) {
       //scene.background = texture;
     });
     scene.background = texture;  // Optional: use the same texture as environment
