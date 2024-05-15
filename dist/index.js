@@ -18,7 +18,7 @@ const material = new THREE.MeshPhysicalMaterial({
         reflectivity: 0.2,
 });
 
-const planeTexture = new THREE.TextureLoader().load("../assets/background.png");
+const planeTexture = new THREE.TextureLoader().load("./assets/background.png");
 const plane_mat = new THREE.MeshBasicMaterial({ map: planeTexture });
 
 const plane_geo = new THREE.BoxGeometry(2, 2, 0.1);
@@ -30,7 +30,7 @@ mesh.castShadow = true; // Enable the object to cast shadows
 scene.add(mesh);
 
 const rgbeLoader = new RGBELoader();
-  rgbeLoader.load('../assets/belfast.hdr', function (texture) {
+  rgbeLoader.load('./assets/belfast.hdr', function (texture) {
     texture.mapping = THREE.EquirectangularReflectionMapping;
     renderer.toneMapping = THREE.CineonToneMapping;
     renderer.toneMappingExposure = 1;
@@ -38,7 +38,7 @@ const rgbeLoader = new RGBELoader();
     // Set the scene background or environment
     //scene.background = texture;
     const loader = new THREE.TextureLoader();
-    loader.load('../assets/background.png', function (texture) {
+    loader.load('./assets/background.png', function (texture) {
       //scene.background = texture;
     });
     scene.background = texture;  // Optional: use the same texture as environment
