@@ -8,6 +8,11 @@
 <body>
     <button id="toggleShape">Switch Shape</button>
 
+    <button id="toggleWall">Switch Wall Color</button>
+    <label for="colorPicker">Wall color:</label>
+<input type="color" id="colorPicker" name="color" value="#ff0000">
+
+
     <canvas class="webgl"></canvas>
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
     <script type="importmap">
@@ -19,6 +24,7 @@
                 }
             }
     </script>
+    <script type="module" src="geometry.js"></script>
     <script type = "module" src = "index.js"></script>
 
 </body>
