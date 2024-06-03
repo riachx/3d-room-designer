@@ -4,13 +4,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js Github Pages Deployment</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <div class="larger-container">
+        <div class="tabs">
+            <div class="tab" data-group="1">Group 1</div>
+            <div class="tab" data-group="2">Group 2</div>
+            <div class="tab" data-group="3">Group 3</div>
+            <div class="tab" data-group="4">Group 4</div>
+        </div>
+        <div class="container">
+            <div class="catalog">
+                <div class="item" data-group="1"><span class="item-text">Item 1</span></div>
+                <div class="item" data-group="1"><span class="item-text">Item 2</span></div>
+                <div class="item" data-group="1"><span class="item-text">Item 3</span></div>
+                <div class="item" data-group="1"><span class="item-text">Item 4</span></div>
+
+                <div class="item" data-group="1"><span class="item-text">Item 5</span></div>
+                <div class="item" data-group="1"><span class="item-text">Item 6</span></div>
+                <div class="item" data-group="1"><span class="item-text">Item 5</span></div>
+                <div class="item" data-group="2"><span class="item-text">Item 6</span></div>
+                <div class="item" data-group="2"><span class="item-text">Item 7</span></div>
+                <div class="item" data-group="2"><span class="item-text">Item 8</span></div>
+
+                <div class="item" data-group="2"><span class="item-text">Item 8_1</span></div>
+                <div class="item" data-group="3"><span class="item-text">Item 9</span></div>
+                <div class="item" data-group="3"><span class="item-text">Item 10</span></div>
+                <div class="item" data-group="4"><span class="item-text">Item 11</span></div>
+                <div class="item" data-group="4"><span class="item-text">Item 12</span></div>
+                <div class="item" data-group="5"><span class="item-text">Item 13</span></div>
+            </div>
+        </div>
+    </div>
+
     <button id="toggleShape">Switch Shape</button>
 
     <button id="toggleWall">Switch Wall Color</button>
     <label for="colorPicker">Wall color:</label>
 <input type="color" id="colorPicker" name="color" value="#ff0000">
+
 
 
     <canvas class="webgl"></canvas>

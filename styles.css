@@ -1,0 +1,110 @@
+:root{
+    --catalog-color: #fff7e8;
+    --border-color: #5c3c1d;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden; /* Ensure no scrollbars are visible */
+}
+.larger-container{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 360px;
+    padding:20px;
+    height: 640px;
+    z-index: 10;
+    background-image: url("./assets/wood-template.png");
+    background-size:400px;
+}
+.container {
+    top:90px;
+    position: absolute;
+    
+    width: 337px;
+    height: 538px;
+    border-radius: 20px;
+    background-color: var(--catalog-color);
+    overflow: hidden;
+    z-index: 10; /* Ensure it appears on top of other elements */
+    left:32px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid var(--border-color);
+    border-radius: 10px 10px 0 0;
+    background-color: #8b5a2b;
+    color: white;
+    border-bottom: 0;
+    margin: 0 5px;
+    height:90px;
+}
+
+.tab:hover {
+    background-color: #a0522d;
+    transition:  background-color 0.3s;
+}
+
+.tab.active {
+    background-color: var(--catalog-color);
+}
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100% - 50px); /* Adjust height to allow scrolling */
+}
+
+.item {
+    width: 130px;
+    height: 130px;
+    background-color: #d2b48c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #a0522d;
+    color: white;
+}
+
+.item-text {
+    display: inline-block;
+    line-height:45px;
+    padding: 15px;
+}
+
+h3 {
+    font-size:20px;
+}
+
+canvas.webgl {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure it appears below other elements */
+}
