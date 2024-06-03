@@ -33,14 +33,14 @@ const plane_mat = new THREE.MeshBasicMaterial({ map: planeTexture });
 
 const plane_geo = new THREE.BoxGeometry(2, 2, 0.1);
 const plane = new THREE.Mesh(plane_geo,plane_mat);
-scene.add(plane);
+//scene.add(plane);
 
 
 
 
 const mesh = new THREE.Mesh(boxGeometry, material);
 mesh.castShadow = true; // Enable the object to cast shadows
-scene.add(mesh);
+//scene.add(mesh);
 
 // Materials
 const newMaterial = new THREE.MeshStandardMaterial({
