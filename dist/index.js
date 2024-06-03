@@ -300,7 +300,8 @@ const sizes = {
 };
 
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(3, 2, 3);
+camera.position.set(3.8, 1.5, 2.5);
+
 scene.add(camera);
 
 
@@ -310,7 +311,9 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 });
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0, 0.8);
 controls.update();
+
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true; // Enable shadow maps in the renderer
@@ -344,6 +347,56 @@ function animate() {
 }
 
 animate();
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".tab");
+    const items = document.querySelectorAll(".item");
+
+    function filterItems(group) {
+        items.forEach(item => {
+            if (item.getAttribute("data-group") === group) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+        updateActiveTab(group);
+    }
+
+    function updateActiveTab(activeGroup) {
+        tabs.forEach(tab => {
+            if (tab.getAttribute("data-group") === activeGroup) {
+                tab.classList.add("active");
+            } else {
+                tab.classList.remove("active");
+            }
+        });
+    }
+
+    function updateActiveItem(activeItem) {
+        tabs.forEach(tab => {
+            if (tab.getAttribute("data-group") === activeItem) {
+                tab.classList.add("active");
+            } else {
+                tab.classList.remove("active");
+            }
+        });
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const group = tab.getAttribute("data-group");
+            filterItems(group);
+        });
+    });
+
+    // Display items for group 1 by default and set the corresponding tab as active
+    filterItems("1");
+});
+
+
+
+
 
 const button = document.getElementById('toggleShape');
 button.addEventListener('click', function() {
