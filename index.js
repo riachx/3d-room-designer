@@ -751,7 +751,7 @@ ground.position.set(0,-1,0);
 const groundgeo2 = new THREE.BoxGeometry(10,0.05,10);
 const ground2 = new THREE.Mesh(groundgeo2, groundMaterial);
 ground2.receiveShadow = true; //default
-ground2.position.set(0,5,0);
+ground2.position.set(0,4,0);
 
 const wall_geo = new THREE.BoxGeometry(0.1,10,10);
 const wall_mesh = new THREE.Mesh(wall_geo, backgroundMaterial);
@@ -949,8 +949,8 @@ function animate() {
 
     time+=0.1;
 
-    sinIntensity = (Math.sin(time) + 2) / 2 * 0.5;
-    cosIntensity = (Math.cos(time) + 1) / 5 * 0.5;
+    sinIntensity = (Math.sin(1.5 * time) + 1) * 0.5; 
+    cosIntensity = (Math.cos(1.5 * time) + 1) * 0.5;
 
     sinIntensity2 = (Math.sin(time) + 3) / 5;
     cosIntensity2 = (Math.cos(time) + 10) / 5 * 0.5;
@@ -959,7 +959,7 @@ function animate() {
     renderer.render(scene, camera);
 
     if (darkModeOn) {
-        bulb1.intensity = sinIntensity;
+        bulb1.intensity = sinIntensity/3;
         bulb2.intensity = cosIntensity;
     } else {
     }
@@ -1092,10 +1092,12 @@ buttonWall.addEventListener('click', function () {
         });
     }
 });*/
-
+let deskLightOn = true;
 document.addEventListener('DOMContentLoaded', () => {
     const colorPicker = document.getElementById('colorPicker');
     const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    const deskLightToggle = document.getElementById('deskLightToggle');
     let flickerInterval;
     // Event listener for color change
     colorPicker.addEventListener('input', function () {
@@ -1105,6 +1107,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wallMaterial) {
             wallMaterial.color.set(colorPicked);
             console.log(wallMaterial.color);
+        }
+    });
+
+    deskLightToggle.addEventListener('change', function () {
+        
+        deskLightOn = this.checked;
+        if (this.checked) {
+           deskSpotLight.intensity = 0;
+        } else{
+            deskSpotLight.intensity = 10;
         }
     });
 
@@ -1121,9 +1133,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ambientLight.intensity = 0.15;
             directionalLight.intensity = 0.1;
             light.intensity = 0;
-            topLight.intensity =0.2;
+            topLight.intensity =0.4;
             pointlightleft.intensity = 0;
-            deskSpotLight.intensity = 2;
+            if(deskLightOn){
+                deskSpotLight.intensity = 2;
+            }
+            
             deskSpotLight.color = new THREE.Color(0xEAA349);
         } else {
             console.log("LIGHT!")
@@ -1134,7 +1149,10 @@ document.addEventListener('DOMContentLoaded', () => {
             directionalLight.intensity = 1;
             light.intensity = 10;
             pointlightleft.intensity = 1;
-            deskSpotLight.intensity = 10;
+            if(deskLightOn){
+                deskSpotLight.intensity = 10;
+            }
+            
             deskSpotLight.color = new THREE.Color(0xFF4500);
             
         }
