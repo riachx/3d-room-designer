@@ -888,17 +888,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-const button = document.getElementById('toggleShape');
+/*const button = document.getElementById('toggleShape');
 button.addEventListener('click', function() {
     if (mesh.geometry.type === 'BoxGeometry') {
         mesh.geometry = torusGeometry; // Switch to sphere
     } else {
         mesh.geometry = boxGeometry; // Switch back to cube
     }
-});
+});*/
 
 
-const buttonWall = document.getElementById('toggleWall');
+/*const buttonWall = document.getElementById('toggleWall');
 buttonWall.addEventListener('click', function () {
   
     if (modelWall) {
@@ -916,7 +916,7 @@ buttonWall.addEventListener('click', function () {
           }
         });
     }
-});
+});*/
 
 document.addEventListener('DOMContentLoaded', () => {
     const colorPicker = document.getElementById('colorPicker');
