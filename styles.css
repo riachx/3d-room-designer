@@ -19,7 +19,7 @@ body {
 }
 .larger-container{
     position: absolute;
-    top: 40px;
+    top: 70px;
     left: 40px;
     width: 360px;
     padding:20px;
@@ -44,9 +44,10 @@ body {
 .tabs {
     display: flex;
     justify-content: space-around;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 0px;
 }
+
 .toggles{
     z-index:10;
     position:absolute;
@@ -72,7 +73,7 @@ body {
 }
 
 .tab img {
-    width:50px;
+    width:40px;
 }
 .item img{
     width:100px;
@@ -82,14 +83,14 @@ body {
 .tab {
     flex: 1;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     border: 3px solid var(--border-color);
     border-radius: 10px 10px 0 0;
     background-color: #673e1e;
     color: white;
     border-bottom: 0;
-    margin: 0 3px;
+    margin: 0 6px;
     height:90px;
 }
 
@@ -103,7 +104,27 @@ body {
 }
 
 
+.name {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    z-index: 100; /* Ensure it appears on top of other elements */
+}
 
+.title {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    top:20px;
+    left:100px;
+    color: rgb(255, 230, 221);
+    text-shadow: rgb(31, 26, 8) 1px 0 10px;
+    font-weight: 700;
+    z-index: 100; /* Ensure it appears on top of other elements */
+}
 
 .catalog {
     display: grid;
@@ -117,6 +138,8 @@ body {
 
     height: calc(100% - 45px); /* Adjust height to allow scrolling */
 }
+
+.catalog 
 
 .item {
     width: 130px;
@@ -147,21 +170,6 @@ body {
 
 h3 {
     font-size:20px;
-}
-#progress-bar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: #f3f3f3;
-}
-
-#progress-bar {
-    width: 0%;
-    height: 100%;
-    background-color: #4caf50;
-    transition: width 0.2s;
 }
 
 canvas.webgl {

@@ -21,15 +21,6 @@ const wallMaterial = new THREE.MeshStandardMaterial({
       emissiveIntensity:1000
       
     });
-
-    const comforterTop = new THREE.MeshStandardMaterial({
-        color:0xffffff
-        
-      });
-      const comforterBottom = new THREE.MeshStandardMaterial({
-        color:0xFD7F20
-        
-      });
       const pillowFront = new THREE.MeshStandardMaterial({
         color:0xeb733c
         
@@ -126,15 +117,11 @@ const wallMaterial = new THREE.MeshStandardMaterial({
         wallMaterial,
         floorMaterial,
         emissiveWindow,
-        comforterTop,
-        comforterBottom,
         pillowFront,
         pillowBack,
         glass,
         bulb,
         duvet,
-        glassReflect,
-        mirror,
         greenGlass,
         groundMaterial,
         backgroundMaterial
