@@ -109,6 +109,17 @@ const wallMaterial = new THREE.MeshStandardMaterial({
       
     });
 
+    const groundMaterial = new THREE.MeshStandardMaterial({
+      color: 0x804A22,  // Red color
+      metalness: 0.0,
+      roughness: 0.9
+    });
+
+    const backgroundMaterial = new THREE.MeshStandardMaterial({
+      color: 0x804A22,  // Red color
+      metalness: 0.0,
+      roughness: 0.9
+    });
 
     
  export {
@@ -124,6 +135,8 @@ const wallMaterial = new THREE.MeshStandardMaterial({
         duvet,
         glassReflect,
         mirror,
-        greenGlass
+        greenGlass,
+        groundMaterial,
+        backgroundMaterial
 };
     
