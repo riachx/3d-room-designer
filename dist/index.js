@@ -820,10 +820,6 @@ const hemiMaterial = new THREE.MeshStandardMaterial({
     roughness: 0.9
   });
 
-
-
-
-
 // ***** STRING LIGHTS ******** //
 
 
@@ -847,7 +843,6 @@ bulb5.translateZ(-0.4);
 
 scene.add(bulb1, bulb2, bulb3,bulb4,bulb5);
 
-// Add a light to the scene
 const light = new THREE.PointLight(0xE3823C, 10);
 light.position.set(2,0,-1);
 scene.add(light);
@@ -1020,16 +1015,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const group = event.currentTarget.getAttribute("data-group");
         const name = event.currentTarget.getAttribute("data-name");
         
-        // Remove 'clicked' class from previously clicked item in the same group
         if (clickedItems[group]) {
             clickedItems[group].classList.remove("active");
         }
 
-        // Add 'clicked' class to the current item and update the clickedItems object
-        event.currentTarget.classList.add("active");
+         event.currentTarget.classList.add("active");
         clickedItems[group] = event.currentTarget;
-
-        //console.log(clickedItems[group]);
 
         console.log(`Item clicked: ${name}`);
         
@@ -1090,10 +1081,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Display items for group 1 by default and set the corresponding tab as active
     filterItems("1");
-
-
-
-
 
     const colorPicker = document.getElementById('colorPicker');
     const darkModeToggle = document.getElementById('darkModeToggle');
