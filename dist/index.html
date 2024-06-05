@@ -16,7 +16,9 @@
             <div class="tab" data-group="1">
                 <img src ="./assets/items/bed-plaid.png"> 
             </div>
-            <div class="tab" data-group="2">Group 2</div>
+            <div class="tab" data-group="2">
+                <img src ="./assets/items/disco-ball.png"> 
+            </div>
             <div class="tab" data-group="3">
                 <img src ="./assets/items/rug-orange.png"> 
             </div>
@@ -43,13 +45,20 @@
                 <div class="item" data-group="1" data-name="bed-fruit"><span class="item-text">
                     <img src ="./assets/items/bed-fruit.png"> 
                 </span></div>
-                <div class="item" data-group="1"><span class="item-text">Item 5</span></div>
-                <div class="item" data-group="2"><span class="item-text">Item 6</span></div>
-                <div class="item" data-group="2"><span class="item-text">Item 7</span></div>
-                <div class="item" data-group="2"><span class="item-text">Item 8</span></div>
+                <div class="item" data-group="1" data-name="bed-prof"><span class="item-text">
+                    <img src ="./assets/items/bed-prof.png"> 
+                </span></div>
+                <div class="item" data-group="2" data-name="disco"><span class="item-text" >
+                    <img src ="./assets/items/disco-ball.png"> 
+                </span></div>
+                <div class="item" data-group="2" data-name="fan"> <span class="item-text">
+                    <img src ="./assets/items/fan.png"> 
+                </span></div>
+                <div class="item" data-group="2" data-name="lights"><span class="item-text">
+                    <img src ="./assets/items/lights.png"> 
+                </span></div>
 
-                <div class="item" data-group="2"><span class="item-text">Item 8_1</span></div>
-                <div class="item" data-group="3" data-name="rug-green"><span class="item-text">
+               <div class="item" data-group="3" data-name="rug-green"><span class="item-text">
 
                     <img src ="./assets/items/rug-green.png"> 
 
@@ -72,19 +81,29 @@
                 <div class="item" data-group="3" data-name="rug-sky-blue"><span class="item-text">
                     <img src ="./assets/items/rug-sky-blue.png"> 
                 </span></div>
+                <div class="item" data-group="3" data-name="rug-sun"><span class="item-text">
+                    <img src ="./assets/items/rug-sun.png"> 
+                </span></div>
+
+                <div class="item" data-group="3" data-name="rug-ball"><span class="item-text">
+                    <img src ="./assets/items/rug-ball.png"> 
+                </span></div>
                 
                 <div class="slider" data-group="4">
                     <div class="toggles">
                         <!--<button id="toggleShape" class = "toggle">Switch Shape</button><br>-->
                         
-                        <label for="darkModeToggle" class="toggle">Dark Mode:</label>
-                        <input type="checkbox" id="darkModeToggle"><br>
-                       
-                        
-                        <!--<button id="toggleWall" class = "toggle">Switch Wall Color</button><br>-->
-                        <label for="colorPicker" class = "toggle" >Wall color:</label>
-                    <input type="color" id="colorPicker" name="color" value="#ff0000"><br>
+                        <div class = "smallContainer">
+                            <label for="darkModeToggle" class="toggle">Dark Mode:</label>
+                            <input type="checkbox" id="darkModeToggle"><br>
                         </div>
+                        
+                        <div class = "smallContainer">
+                        <!--<button id="toggleWall" class = "toggle">Switch Wall Color</button><br>-->
+                            <label for="colorPicker" class = "toggle" >Change wall color:</label>
+                            <input type="color" id="colorPicker" name="color" value="#ff0000"><br>
+                            </div>
+                </div>
                 </div>
 
                 <div class="item" data-group="5"><span class="item-text">Item 13</span></div>
@@ -108,6 +127,7 @@
     </script>
     <script type = "module" src = "materials.js"></script>
     <script type = "module" src = "index.js"></script>
+    
 
 </body>
 </html>

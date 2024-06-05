@@ -16,7 +16,9 @@ import {
     duvet,
     glassReflect,
     mirror,
-    greenGlass
+    greenGlass,
+    groundMaterial,
+    backgroundMaterial
 
 } from './materials.js';
 
@@ -94,6 +96,96 @@ loader_floor.load(
     }
 );
 
+
+/*const loaderDisco = new GLTFLoader();
+let modelDisco;
+loaderDisco.load(
+    './assets/disco.gltf',
+    function (gltf) {
+        gltf.scene.traverse(function (child) {
+            if (child.isMesh) {
+                    //child.receiveShadow = true;
+                    //child.castShadow = true;
+                    child.material.roughness = 0.5;
+                    child.material.metalness = 1;
+                    child.material.metalness = 1;
+            }
+        });
+        modelDisco = gltf.scene;
+        
+        scene.add(modelDisco);
+    },
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    },
+    function (error) {
+        console.log("An error happened");
+    }
+);*/
+
+// TWO PRIMITIVES
+const disco_rod_geo = new THREE.CylinderGeometry(0.01,0.01,0.4);
+const disco_rod = new THREE.Mesh(disco_rod_geo, floorMaterial);
+disco_rod.position.set(0,0.8,0);
+
+const disco_geo = new THREE.SphereGeometry( 0.2, 22, 16 ); 
+const disco_mat = new THREE.MeshPhysicalMaterial( { 
+    roughness:0.4, 
+    metalness:0.6, 
+    flatShading:true,
+    reflectivity: 0.35,
+    thickness: 15,
+    transmission: .96,
+} ); 
+const disco = new THREE.Mesh( disco_geo, disco_mat ); 
+disco.position.set(0,0.5,0);
+
+
+
+var topLight = new THREE.SpotLight(0xfff000,5);
+topLight.position.set(0,0.5, 0);
+topLight.target.position.set(0,0,0);
+topLight.penumbra = 1;
+topLight.angle = 1;
+topLight.castShadow = true;
+scene.add(topLight);
+
+//DISCO LIGHTS
+
+var discoLight1 = new THREE.SpotLight(0xfff000,100);
+discoLight1.position.set(0,0.5, 0);
+discoLight1.target.position.set(0,0,0);
+discoLight1.penumbra = 1;
+discoLight1.angle = 0.3;
+discoLight1.castShadow = true;
+
+var discoLight2 = new THREE.SpotLight(0x1417DA,300);
+discoLight2.position.set(0,0.5, 0);
+discoLight2.target.position.set(0,0,0);
+discoLight2.penumbra = 1;
+discoLight2.angle = 0.2;
+discoLight2.castShadow = true;
+
+var discoLight3 = new THREE.SpotLight(0x00FFBD,50);
+discoLight3.position.set(0,0.5, 0);
+discoLight3.target.position.set(0,0,0);
+discoLight3.penumbra = 1;
+discoLight3.angle = 0.2;
+
+var discoLight4 = new THREE.SpotLight(0x0013FF,200);
+discoLight4.position.set(1,0.5, 0);
+discoLight4.target.position.set(-1,0,1);
+discoLight4.penumbra = 1;
+discoLight4.angle = 0.2;
+
+//deskSpotLight.shadow.mapSize.set( 4096, 4096);
+//scene.add(discoLight1,discoLight2,discoLight3,discoLight4);
+
+
+
+const sphereSize1 = 0.5;
+//const discoLightHelper = new THREE.SpotLightHelper( discoLight1, sphereSize1 );
+////scene.add(discoLightHelper);
 
 
 const loaderFrame = new GLTFLoader();
@@ -239,9 +331,12 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-stripes") {
                         if (child.name == "pillow1") {
                             child.material.color.set(0x8A7D76);
+                            child.material.map = null;
+                            
                         }
                         if (child.name == "pillow2") {
                             child.material.color.set(0x8B756A);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xD8C1B5);
@@ -251,6 +346,7 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-plaid") {
                         if (child.name == "pillow1" || child.name == "pillow2") {
                             child.material.color.set(0xd5622d);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xed9936);
@@ -260,9 +356,11 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-quilt") {
                         if (child.name == "pillow1") {
                             child.material.color.set(0xBC354B);
+                            child.material.map = null;
                         }
                         if (child.name == "pillow2") {
                             child.material.color.set(0xFF495F);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xed9936);
@@ -272,9 +370,11 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-flowers") {
                         if (child.name == "pillow1") {
                             child.material.color.set(0xD6352F);
+                            child.material.map = null;
                         }
                         if (child.name == "pillow2") {
                             child.material.color.set(0xEC5852);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xF4A6A3);
@@ -284,9 +384,11 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-stars") {
                         if (child.name == "pillow1") {
                             child.material.color.set(0xBC354B);
+                            child.material.map = null;
                         }
                         if (child.name == "pillow2") {
                             child.material.color.set(0xFF495F);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xF4A6A3);
@@ -296,11 +398,25 @@ function modifyBedMaterial(textureName) {
                     if (textureName == "bed-fruit") {
                         if (child.name == "pillow1" || child.name == "pillow2") {
                             child.material.color.set(0xd5622d);
+                            child.material.map = null;
                         }
                         if (child.name == "underblanket") {
                             child.material.color.set(0xed9936);
                         }
                     }
+
+                    if (textureName == "bed-prof") {
+                        if (child.name == "pillow1" || child.name == "pillow2") {
+                            child.material.map = bedCovers;
+                            child.material.color.set(0x8A7D76);
+                            child.material.needsUpdate = true;
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xffffff);
+                        }
+                    }
+
+                    
                 }
             });
         } else {
@@ -573,8 +689,8 @@ loaderRug.load(
 );
 
 function modifyRugMaterial(textureName) {
-    console.log(textureName);
-    const rug = new THREE.TextureLoader().load(`./assets/textures/${textureName}.png`);
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(`./assets/textures/${textureName}.png`, function (rug) {
     rug.colorSpace = THREE.SRGBColorSpace
 
     if (modelRug) {
@@ -585,8 +701,11 @@ function modifyRugMaterial(textureName) {
             }
         });
     } else {
-        console.log("modelRug is not loaded yet.");
+        console.log("modelBed is not loaded yet.");
     }
+}, undefined, function (err) {
+    console.error('An error occurred loading the texture:', err);
+});
 }
 
  
@@ -625,10 +744,37 @@ const torusGeometry = new THREE.TorusKnotGeometry(0.5,0.2,100); // Sphere geomet
 
 
 const groundgeo = new THREE.BoxGeometry(10,0.05,10);
-const ground = new THREE.Mesh(groundgeo, floorMaterial);
+const ground = new THREE.Mesh(groundgeo, groundMaterial);
 ground.receiveShadow = true; //default
 ground.position.set(0,-1,0);
-scene.add(ground);
+
+const groundgeo2 = new THREE.BoxGeometry(10,0.05,10);
+const ground2 = new THREE.Mesh(groundgeo2, groundMaterial);
+ground2.receiveShadow = true; //default
+ground2.position.set(0,5,0);
+
+const wall_geo = new THREE.BoxGeometry(0.1,10,10);
+const wall_mesh = new THREE.Mesh(wall_geo, backgroundMaterial);
+wall_mesh.receiveShadow = true; //default
+wall_mesh.position.set(-5,-1,0);
+
+const wall_geo2 = new THREE.BoxGeometry(10,10,0.1);
+const wall_mesh2 = new THREE.Mesh(wall_geo2, backgroundMaterial);
+wall_mesh2.receiveShadow = true; //default
+wall_mesh2.position.set(0,-1,-5);
+
+const wall_geo3 = new THREE.BoxGeometry(0.1,10,10);
+const wall_mesh3 = new THREE.Mesh(wall_geo3, backgroundMaterial);
+wall_mesh3.receiveShadow = true; //default
+wall_mesh3.position.set(5,-1,0);
+
+const wall_geo4 = new THREE.BoxGeometry(10,10,0.1);
+const wall_mesh4 = new THREE.Mesh(wall_geo4, backgroundMaterial);
+wall_mesh4.receiveShadow = true; //default
+wall_mesh4.position.set(0,-1,5);
+
+scene.add(wall_mesh, ground, ground2, wall_mesh2, wall_mesh3, wall_mesh4);
+
 
 const geometry1 = new THREE.BoxGeometry(1,1,0.5);
 const cube = new THREE.Mesh(geometry1, emissiveWindow);
@@ -787,17 +933,27 @@ scene.add( directionalLight );
 let time = 0;
 let sinIntensity = 0;
 let cosIntensity = 0;
+let sinIntensity2 = 0;
+let cosIntensity2 = 0;
 
 function animate() {
     requestAnimationFrame(animate);
     
-    if(modelFan) modelFan.rotation.y += 0.01;
+    if(modelFan) modelFan.rotation.y += 0.03;
+    if(disco) disco.rotation.y += 0.03;
+    if(discoLight1) discoLight1.position.set(0,0.4,sinIntensity2);
+    if(discoLight2) discoLight2.position.set(cosIntensity2,0,sinIntensity2);
+    if(discoLight3) discoLight3.position.set(sinIntensity2,0,cosIntensity);
+    if(discoLight4) discoLight4.position.set(0,2,-3*sinIntensity+1);
 
 
     time+=0.1;
 
     sinIntensity = (Math.sin(time) + 2) / 2 * 0.5;
     cosIntensity = (Math.cos(time) + 1) / 5 * 0.5;
+
+    sinIntensity2 = (Math.sin(time) + 3) / 5;
+    cosIntensity2 = (Math.cos(time) + 10) / 5 * 0.5;
 
     //modelFrame.rotation.y += 0.01%10;
     renderer.render(scene, camera);
@@ -860,8 +1016,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(name.includes("bed")){
             modifyBedMaterial(name);
-            console.log(name);
         }
+
+        if(name.includes("disco")){
+            scene.remove(modelFan);
+            scene.add(disco);
+            scene.add(disco_rod);
+
+        }
+        if(name.includes("fan")){
+            scene.remove(discoLight1,discoLight2,discoLight3,discoLight4);
+            scene.remove(disco);
+            scene.remove(disco_rod);
+            scene.add(modelFan);
+
+        }
+        if(name.includes("lights")){
+            scene.add(discoLight1,discoLight2,discoLight3,discoLight4);
+            
+            scene.remove(modelFan);
+        }
+
+        
 
     }
 
@@ -940,11 +1116,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (this.checked) {
             console.log("DARK!")
             darkModeOn = true;
-            hemilight.intensity = 0;
+            hemilight.intensity = 0.1;
             spotlight.intensity = 0;
-            ambientLight.intensity = 0.1;
-            directionalLight.intensity = 0;
+            ambientLight.intensity = 0.15;
+            directionalLight.intensity = 0.1;
             light.intensity = 0;
+            topLight.intensity =0.2;
             pointlightleft.intensity = 0;
             deskSpotLight.intensity = 2;
             deskSpotLight.color = new THREE.Color(0xEAA349);
