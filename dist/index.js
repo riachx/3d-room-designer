@@ -223,95 +223,94 @@ loaderBed.load(
     }
 );
 
-function modifyBedMaterial(textureName){
-    const bedCovers = new THREE.TextureLoader().load(`./assets/textures/${textureName}.png`);
-    bedCovers.colorSpace = THREE.SRGBColorSpace;
+function modifyBedMaterial(textureName) {
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(`./assets/textures/${textureName}.png`, function (bedCovers) {
+        bedCovers.colorSpace = THREE.SRGBColorSpace;
 
-    if (modelBed) {
-        modelBed.traverse(function (child) {
-            if (child.isMesh) {
-                if(child.name == "bottomblanket" || child.name == "topblanket"){
-                    child.material.map = bedCovers;
+        if (modelBed) {
+            modelBed.traverse(function (child) {
+                if (child.isMesh) {
+                    if (child.name == "bottomblanket" || child.name == "topblanket") {
+                        child.material.map = bedCovers;
+                        child.material.needsUpdate = true;
+                    }
+
+                    if (textureName == "bed-stripes") {
+                        if (child.name == "pillow1") {
+                            child.material.color.set(0x8A7D76);
+                        }
+                        if (child.name == "pillow2") {
+                            child.material.color.set(0x8B756A);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xD8C1B5);
+                        }
+                    }
+
+                    if (textureName == "bed-plaid") {
+                        if (child.name == "pillow1" || child.name == "pillow2") {
+                            child.material.color.set(0xd5622d);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xed9936);
+                        }
+                    }
+
+                    if (textureName == "bed-quilt") {
+                        if (child.name == "pillow1") {
+                            child.material.color.set(0xBC354B);
+                        }
+                        if (child.name == "pillow2") {
+                            child.material.color.set(0xFF495F);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xed9936);
+                        }
+                    }
+
+                    if (textureName == "bed-flowers") {
+                        if (child.name == "pillow1") {
+                            child.material.color.set(0xD6352F);
+                        }
+                        if (child.name == "pillow2") {
+                            child.material.color.set(0xEC5852);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xF4A6A3);
+                        }
+                    }
+
+                    if (textureName == "bed-stars") {
+                        if (child.name == "pillow1") {
+                            child.material.color.set(0xBC354B);
+                        }
+                        if (child.name == "pillow2") {
+                            child.material.color.set(0xFF495F);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xF4A6A3);
+                        }
+                    }
+
+                    if (textureName == "bed-fruit") {
+                        if (child.name == "pillow1" || child.name == "pillow2") {
+                            child.material.color.set(0xd5622d);
+                        }
+                        if (child.name == "underblanket") {
+                            child.material.color.set(0xed9936);
+                        }
+                    }
                 }
-
-                if(textureName == "bed-stripes"){
-                    if(child.name == "pillow1"){
-                        child.material.color.set(0x8A7D76);
-                    }
-                    if(child.name == "pillow2"){
-                        child.material.color.set(0x8B756A);
-                    } 
-                    if(child.name == "underblanket"){
-                        child.material.color.set(0xD8C1B5);
-                        
-                    }
-                    
-                } 
-
-                if(textureName == "bed-plaid"){
-                    if(child.name == "pillow1" || child.name == "pillow2"){
-                        child.material.color.set(0xd5622d);
-                    }
-                    
-                    if(child.name == "underblanket"){
-                        child.material.color.set(0xed9936);
-                        
-                    }
-                    
-                } 
-
-                if(textureName == "bed-quilt"){
-                    if(child.name == "pillow1"){
-                        child.material.color.set(0xBC354B);
-                    }
-                    if(child.name == "pillow2"){
-                        child.material.color.set(0xFF495F);
-                    }
-                    
-                    if(child.name == "underblanket"){
-                        child.material.color.set(0xed9936);
-                        
-                    }
-                    
-                } 
-
-                if(textureName == "bed-flowers"){
-                    if(child.name == "pillow1"){
-                        child.material.color.set(0xD6352F);
-                    }
-                    if(child.name == "pillow2"){
-                        child.material.color.set(0xEC5852);
-                    }
-                    
-                    if(child.name == "underblanket"){
-                        child.material.color.set(0xF4A6A3);
-                        
-                    }
-                    
-                } 
-
-                if(textureName == "bed-stars"){
-                    if(child.name == "pillow1"){
-                        child.material.color.set(0xBC354B);
-                    }
-                    if(child.name == "pillow2"){
-                        child.material.color.set(0xFF495F);
-                    }
-                    
-                    if(child.name == "underblanket"){
-                        child.material.color.set(0xF4A6A3);
-                        
-                    }
-                    
-                } 
-                
-            }
-        });
-    } else {
-        console.log("modelBed is not loaded yet.");
-    }
-
+            });
+        } else {
+            console.log("modelBed is not loaded yet.");
+        }
+    }, undefined, function (err) {
+        console.error('An error occurred loading the texture:', err);
+    });
 }
+
 
 // ******** NEED 20 PRIMITIVES - PUT HERE ************/
 /*const mirror_geo = new THREE.BoxGeometry(0.32,0.3,0.03);
