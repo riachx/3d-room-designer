@@ -5,46 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js Github Pages Deployment</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="larger-container">
         <div class="tabs">
-            <div class="tab" data-group="1">Group 1</div>
+            <div class="tab" data-group="1">
+                <img src ="./assets/items/bed-plaid.png"> 
+            </div>
             <div class="tab" data-group="2">Group 2</div>
-            <div class="tab" data-group="3">Group 3</div>
+            <div class="tab" data-group="3">
+                <img src ="./assets/items/rug-orange.png"> 
+            </div>
             <div class="tab" data-group="4">Group 4</div>
         </div>
         <div class="container">
             <div class="catalog">
-                <div class="item" data-group="1"><span class="item-text">Item 1</span></div>
-                <div class="item" data-group="1"><span class="item-text">Item 2</span></div>
-                <div class="item" data-group="1"><span class="item-text">Item 3</span></div>
-                <div class="item" data-group="1"><span class="item-text">Item 4</span></div>
+                <div class="item" data-group="1" data-name="bed-stripes" ><span class="item-text">
+                    <img src ="./assets/items/bed-stripes.png"> 
+                </span></div>
+                <div class="item" data-group="1" data-name="bed-plaid"><span class="item-text">
+                    <img src ="./assets/items/bed-plaid.png"> 
+                </span></div>
+                <div class="item" data-group="1" data-name="bed-flowers"><span class="item-text">
+                    <img src ="./assets/items/bed-flowers.png"> 
+                </span></div>
+                <div class="item" data-group="1" data-name="bed-quilt"><span class="item-text">
+                    <img src ="./assets/items/bed-quilt.png"> 
+                </span></div>
 
-                <div class="item" data-group="1"><span class="item-text">Item 5</span></div>
-                <div class="item" data-group="1"><span class="item-text">Item 6</span></div>
+                <div class="item" data-group="1" data-name="bed-stars"><span class="item-text">
+                    <img src ="./assets/items/bed-stars.png"> 
+                </span></div>
+                <div class="item" data-group="1" data-name="bed-fruit"><span class="item-text">
+                    <img src ="./assets/items/bed-fruit.png"> 
+                </span></div>
                 <div class="item" data-group="1"><span class="item-text">Item 5</span></div>
                 <div class="item" data-group="2"><span class="item-text">Item 6</span></div>
                 <div class="item" data-group="2"><span class="item-text">Item 7</span></div>
                 <div class="item" data-group="2"><span class="item-text">Item 8</span></div>
 
                 <div class="item" data-group="2"><span class="item-text">Item 8_1</span></div>
-                <div class="item" data-group="3"><span class="item-text">Item 9</span></div>
-                <div class="item" data-group="3"><span class="item-text">Item 10</span></div>
-                <div class="item" data-group="4"><span class="item-text">Item 11</span></div>
-                <div class="item" data-group="4"><span class="item-text">Item 12</span></div>
+                <div class="item" data-group="3" data-name="rug-green"><span class="item-text">
+
+                    <img src ="./assets/items/rug-green.png"> 
+
+                </span></div>
+                <div class="item" data-group="3" data-name="rug-orange"><span class="item-text">
+                    <img src ="./assets/items/rug-orange.png"> 
+                </span></div>
+
+                <div class="item" data-group="3" data-name="rug-pink"><span class="item-text">
+                    <img src ="./assets/items/rug-pink.png"> 
+                </span></div>
+
+                <div class="item" data-group="3" data-name="rug-blue"><span class="item-text">
+                    <img src ="./assets/items/rug-blue.png"> 
+                </span></div>
+
+                <div class="item" data-group="3" data-name="rug-yellow"><span class="item-text">
+                    <img src ="./assets/items/rug-yellow.png"> 
+                </span></div>
+                <div class="item" data-group="3" data-name="rug-sky-blue"><span class="item-text">
+                    <img src ="./assets/items/rug-sky-blue.png"> 
+                </span></div>
+                
+                <div class="slider" data-group="4">
+                    <div class="toggles">
+                        <button id="toggleShape" class = "toggle">Switch Shape</button><br>
+                        
+                        <label for="darkModeToggle" class="toggle">Dark Mode:</label>
+                        <input type="checkbox" id="darkModeToggle"><br>
+                       
+                        
+                        <button id="toggleWall" class = "toggle">Switch Wall Color</button><br>
+                        <label for="colorPicker" class = "toggle" >Wall color:</label>
+                    <input type="color" id="colorPicker" name="color" value="#ff0000"><br>
+                        </div>
+                </div>
+
                 <div class="item" data-group="5"><span class="item-text">Item 13</span></div>
             </div>
         </div>
     </div>
 
-    <button id="toggleShape">Switch Shape</button>
-
-    <button id="toggleWall">Switch Wall Color</button>
-    <label for="colorPicker">Wall color:</label>
-<input type="color" id="colorPicker" name="color" value="#ff0000">
-
+   
 
 
     <canvas class="webgl"></canvas>
