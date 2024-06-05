@@ -42,7 +42,6 @@ const wallMaterial = new THREE.MeshStandardMaterial({
     // transmission: .95,
     opacity: 0.4,
     reflectivity: 0.2,
-    refractionRatio: 0.985,
     ior: 1.1,
     side: THREE.BackSide,
     })
