@@ -7,15 +7,11 @@ import {
     wallMaterial,
     floorMaterial,
     emissiveWindow,
-    comforterTop,
-    comforterBottom,
     pillowFront,
     pillowBack,
     glass,
     bulb,
     duvet,
-    glassReflect,
-    mirror,
     greenGlass,
     groundMaterial,
     backgroundMaterial
@@ -84,6 +80,7 @@ loader_floor.load(
             }
         });
         modelFloor = gltf1.scene;
+        modelFloor.name = 'model_floor';
         
         scene.add(modelFloor);
     },
@@ -96,32 +93,34 @@ loader_floor.load(
     }
 );
 
-
-/*const loaderDisco = new GLTFLoader();
-let modelDisco;
-loaderDisco.load(
-    './assets/disco.gltf',
+const loader_floor_checkered = new GLTFLoader();
+let modelFloorCheckered;
+loader_floor_checkered.load(
+    './assets/floor-checkered.gltf',
     function (gltf) {
         gltf.scene.traverse(function (child) {
             if (child.isMesh) {
-                    //child.receiveShadow = true;
-                    //child.castShadow = true;
-                    child.material.roughness = 0.5;
-                    child.material.metalness = 1;
-                    child.material.metalness = 1;
+                    child.receiveShadow = true;
+                    child.castShadow = true;
+                
+                
             }
         });
-        modelDisco = gltf.scene;
-        
-        scene.add(modelDisco);
+        modelFloorCheckered = gltf.scene;
+        modelFloorCheckered.name = 'model_floor_checkered';
+        //scene.add(modelFloorCheckered);
     },
+    
     function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     },
     function (error) {
         console.log("An error happened");
     }
-);*/
+);
+
+
+
 
 // TWO PRIMITIVES
 const disco_rod_geo = new THREE.CylinderGeometry(0.01,0.01,0.4);
@@ -427,25 +426,57 @@ function modifyBedMaterial(textureName) {
     });
 }
 
+let clickCount = 0;
+function switchFloors(textureName){
+    
+    clickCount+=1;
 
-// ******** NEED 20 PRIMITIVES - PUT HERE ************/
-/*const mirror_geo = new THREE.BoxGeometry(0.32,0.3,0.03);
-const mirror_mat = mirror;
-const mirrorMesh = new THREE.Mesh(mirror_geo, mirror_mat);
+    // if the orange is clicked when wood is there
+    if(textureName == "floor-checkered" && scene.getObjectByName('model_floor') !== undefined){
 
-const mirrorFrame_geo = new THREE.BoxGeometry(0.4,0.4,0.04);
-const mirrorFrameMesh = new THREE.Mesh(mirrorFrame_geo, floorMaterial);
-scene.add(mirrorFrameMesh)
+        console.log("hey stop reading my console logs!");
+        scene.remove(modelFloor);
+        scene.add(modelFloorCheckered);
+    } 
+    // if anything else is clicked
+    else if (textureName.includes("floor-checkered") && clickCount%2 != 0){
+        
+        console.log("clicking hereeee");
 
-const torus_geo = new THREE.TorusKnotGeometry(0.03,0.02,100,100);
-const torus_mesh = new THREE.Mesh(torus_geo,greenGlass);
-torus_mesh.position.set(0.45,-0.35,-0.7)
-scene.add(torus_mesh);
+        if(scene.getObjectByName('model_floor') !== undefined){
+            scene.remove(modelFloor);
+            scene.add(modelFloorCheckered);
+            console.log("hit dat if statement");
+        }
 
+        const textureLoader = new THREE.TextureLoader();
+        textureLoader.load(`./assets/textures/${textureName}.png`, function (floorTex) {
+        floorTex.colorSpace = THREE.SRGBColorSpace
 
-mirrorMesh.position.set(-0.5,0,-0.86);
-mirrorFrameMesh.position.set(-0.5,0,-0.87);
-scene.add(mirrorMesh);*/
+        if (modelFloorCheckered) {
+            modelFloorCheckered.traverse(function (child) {
+                if (child.isMesh) {
+
+                    if(child.name != "roomFloor003"){
+                        child.material.map = floorTex;
+                    }
+                }
+            });
+        } else {
+            console.log("modelFloorCheckered is not loaded yet.");
+        }
+    }, undefined, function (err) {
+        console.error('An error occurred loading the texture:', err);
+    });
+
+    
+    } else if (textureName.includes("floor-wood") && clickCount%2 != 0){
+        scene.remove(modelFloorCheckered);
+        scene.add(modelFloor);
+    }
+
+}
+
 
 const loaderDesk = new GLTFLoader();
 let modelDesk;
@@ -793,15 +824,6 @@ const hemiMaterial = new THREE.MeshStandardMaterial({
 
 
 
-/*const geometry2 = new THREE.BoxGeometry(2,0.1,2);
-const material2 = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
-const floor = new THREE.Mesh(geometry2, material2);
-floor.castShadow = false; //default is false
-floor.receiveShadow = true; //default
-floor.position.set(0,-0.6,0);
-
-scene.add(floor);*/
-
 // ***** STRING LIGHTS ******** //
 
 
@@ -967,6 +989,7 @@ function animate() {
 }
 
 animate();
+let deskLightOn = true;
 document.addEventListener("DOMContentLoaded", function() {
     const tabs = document.querySelectorAll(".tab");
     const items = document.querySelectorAll(".item, .slider");
@@ -1008,14 +1031,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //console.log(clickedItems[group]);
 
-        //console.log(`Item clicked: ${name}`);
+        console.log(`Item clicked: ${name}`);
         
+        if(name){
         if(name.includes("rug")){
             modifyRugMaterial(name);
         }
 
         if(name.includes("bed")){
             modifyBedMaterial(name);
+        }
+
+        if(name.includes("floor")){
+            switchFloors(name);
         }
 
         if(name.includes("disco")){
@@ -1036,7 +1064,14 @@ document.addEventListener("DOMContentLoaded", function() {
             
             scene.remove(modelFan);
         }
-
+        if(name == "nothing"){
+            scene.remove(modelFan);
+            scene.remove(discoLight1,discoLight2,discoLight3,discoLight4);
+            scene.remove(disco);
+            scene.remove(disco_rod);
+           
+        }
+    }
         
 
     }
@@ -1055,45 +1090,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Display items for group 1 by default and set the corresponding tab as active
     filterItems("1");
-});
 
 
 
 
 
-
-
-/*const button = document.getElementById('toggleShape');
-button.addEventListener('click', function() {
-    if (mesh.geometry.type === 'BoxGeometry') {
-        mesh.geometry = torusGeometry; // Switch to sphere
-    } else {
-        mesh.geometry = boxGeometry; // Switch back to cube
-    }
-});*/
-
-
-/*const buttonWall = document.getElementById('toggleWall');
-buttonWall.addEventListener('click', function () {
-  
-    if (modelWall) {
-        modelWall.traverse(function (child) {
-            if (child.isMesh) {
-              
-              console.log(child.material.color);
-              if (child.material.color != 0x00ffff) {
-                child.material.color.set(0x00ffff); // Change the color to green
-                
-              } else {
-                child.material.color.set(0xffff00);
-                console.log("clicked but green already");
-              }
-          }
-        });
-    }
-});*/
-let deskLightOn = true;
-document.addEventListener('DOMContentLoaded', () => {
     const colorPicker = document.getElementById('colorPicker');
     const darkModeToggle = document.getElementById('darkModeToggle');
     
@@ -1130,10 +1131,10 @@ document.addEventListener('DOMContentLoaded', () => {
             darkModeOn = true;
             hemilight.intensity = 0.1;
             spotlight.intensity = 0;
-            ambientLight.intensity = 0.15;
+            ambientLight.intensity = 0.1;
             directionalLight.intensity = 0.1;
             light.intensity = 0;
-            topLight.intensity =0.4;
+            topLight.intensity =0.3;
             pointlightleft.intensity = 0;
             if(deskLightOn){
                 deskSpotLight.intensity = 2;
