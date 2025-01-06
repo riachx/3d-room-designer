@@ -3,6 +3,7 @@ A low-poly 3D interior design program made with Three.js for my Computer Graphic
 
 ![3d Designer](https://i.imgur.com/Bj8HOkQ.png)
 
+![3d Designer dark mode](https://i.imgur.com/23euJJY.png)
 
 ## Credit:
 
