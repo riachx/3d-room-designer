@@ -687,9 +687,6 @@ loaderFan.load(
     }
 );
 
-const rug = new THREE.TextureLoader().load('./assets/rug-green.png')
-
-
 const loaderRug = new GLTFLoader();
 let modelRug;
 loaderRug.load(

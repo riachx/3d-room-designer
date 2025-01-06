@@ -1,5 +1,8 @@
 # 3D Interior Designer
-A simple 3D interior design program made with Three.js for my Computer Graphics class.
+A low-poly 3D interior design program made with Three.js for my Computer Graphics class.
+
+![3d Designer](https://i.imgur.com/Bj8HOkQ.png)
+
 
 ## Credit:
 
